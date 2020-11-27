@@ -6,12 +6,12 @@ def product_list(request, category_slug=None):
     categories = Category.objects.all()
     products = Product.objects.filter(available=True)
     if category_slug:
-        category = get_objetc_or_404(Category, slug=category_slug)
-        products = Product.filter(category=category)
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=category)
 
     return render(
         request,
-        'shop/product/list.html',
+        'product/list.html',
         {
             'category': category,
             'categories': categories,
@@ -20,11 +20,11 @@ def product_list(request, category_slug=None):
     )
 
 def product_detail(request, id, slug):
-    product = get_objetc_or_404(
+    product = get_object_or_404(
         Product, id=id, slug=slug, available=True)
-    render(
+    return render(
         request,
-        'shop/product/detail.html',
+        'product/detail.html',
         {'product': product}
     )
 

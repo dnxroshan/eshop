@@ -12,7 +12,7 @@ env:
 
 before_install:
   - sudo apt update
-  - sudo apt install python3-dev libmysqlclient-dev default-libmysqlclient-dev
+  - sudo apt install python3-dev
 
 # command to install dependecies
 

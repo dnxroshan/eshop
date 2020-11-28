@@ -9,6 +9,7 @@ services:
 
 env:
   - DB=mysql
+  - DJANGO=3.1.3 DJANGO_SETTINGS_MODULE="eshop.settings"
 
 before_install:
   - sudo apt update
@@ -21,9 +22,9 @@ install:
 
 before_script:
   - mysql -e 'create database test;' -u root
+  - python manage.py syncdb
 
 # command to run tests
 
 script:
-  - ./manage.py migrate
-  - ./manage.py test
+  - python manage.py test

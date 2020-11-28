@@ -1,30 +1,28 @@
-dist: focal
-
 language: python
-python:
-  - "3.8"
 
-services:
-  - mysql
+python:
+  - "3.4"
+
+services: mysql
 
 env:
-  - DB=mysql
-  - DJANGO=3.1.3 DJANGO_SETTINGS_MODULE="eshop.settings"
+  global:
+    - DJANGO_SETTINGS_MODULE="eshop.settings"
+    #- PYTHONPATH="/home/travis/build/my_github_name/my_github_project"
+    - PIP_USE_MIRRORS=true
+    - BUILD_ON_TRAVIS=true
+  matrix:
+    - DJANGO=3.1 DB=mysql
 
-before_install:
-  - sudo apt update
-  - sudo apt install python3-dev
-
-# command to install dependecies
-
+#commands to install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip install -q Django==$DJANGO
+  - pip install -q -r requirements.txt
 
 before_script:
-  - mysql -e 'create database test_db;' -u root
+  - mysql -e 'create database test_db;'
   - python manage.py syncdb --noinput
 
-# command to run tests
-
+#command to run the test suite
 script:
   - python manage.py test

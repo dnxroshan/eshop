@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
+from cart.forms import AddProductForm
 
 def product_list(request, category_slug=None):
     category = None
@@ -11,7 +12,7 @@ def product_list(request, category_slug=None):
 
     return render(
         request,
-        'product/list.html',
+        'shop/product/list.html',
         {
             'category': category,
             'categories': categories,
@@ -22,10 +23,14 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     product = get_object_or_404(
         Product, id=id, slug=slug, available=True)
+    add_product_form = AddProductForm()
     return render(
         request,
-        'product/detail.html',
-        {'product': product}
+        'shop/product/detail.html',
+        {
+            'product': product,
+            'add_product_form': add_product_form
+        }
     )
 
 

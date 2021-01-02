@@ -1,0 +1,23 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+    Make Payment
+{% endblock %}
+
+{% block content %}
+    <form name="payuForm" action="{{ params.action }}" method="POST">
+        {% csrf_token %}        
+        <input type="hidden" name="key" value="{{ params.key }}" />            
+        <input type="hidden" name="hash" value="{{ params.hash }}"/>            
+        <input type="hidden" name="txnid" value="{{ params.txnid }}" />
+        <input type="hidden" name="amount" value="{{ params.amount }}" />
+        <input type="hidden" name="email" value="{{ params.email }}" />
+        <input type="hidden" name="firstname" value="{{ params.firstname }}" />
+        <input type="hidden" name="phone" value="{{ params.phone }}" />
+        <input type="hidden" name="productinfo" value="{{ params.productinfo }}"/>
+        <input type="hidden" name="surl" value="{{ params.surl }}"/>
+        <input type="hidden" name="furl" value="{{ params.furl }}" />
+        <input type="hidden" name="service_provider" value="{{ params.service_provider }}" />
+        <input type="submit" class="button" value="Pay Now">
+    </form>
+{% endblock %}

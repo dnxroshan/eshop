@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'account.apps.AccountConfig',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
@@ -153,5 +154,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CART_SESSION_ID = 'cart'
+
+PAYU_BASE_URL = ' https://secure.payu.in/_payment'
+PAYU_MERCHANT_KEY = 'BcG7LV6s'
+PAYU_SALT = 'fPXJPhCh8m'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
